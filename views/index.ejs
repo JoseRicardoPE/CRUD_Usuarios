@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include ("partials/myHead.ejs") %>
+    <title>BRM | Prueba Desarrollador Junior</title>
+</head>
+<body>
+    <%- include ('partials/navbar') %>
+    <main class="container main"> 
+        <div class="content__title d-flex justify-content-between align-items-center py-3">
+            <h1 class="fw-bold my-5">Lista de Contáctos</h1>
+            <div class="content__btn">
+                <a href="/users/create" class="btn btn-success">
+                    <i class="fas fa-user"></i>
+                        Nuevo Registro
+                </a>
+            </div>
+        </div>
+        <table class="mb-5 table table-bordered align-middle text-center">
+            <thead class="border-2 border-dark">
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Correo Electrónico</th>
+                <th scope="col"><i class="fas fa-solid fa-wrench"></i>Herramientas</th>
+              </tr>
+            </thead>
+            <tbody class="border border-2">
+                <% for( const data of users ) { %>
+                    <tr> 
+                        <td> <%- data.id %> </td>
+                        <td> <%- data.Nombre %> </td>
+                        <td> <%- data.Telefono %> </td>
+                        <td> <%- data.FechaDeNacimiento %> </td>
+                        <td> <%- data.Direccion %> </td>
+                        <td> <%- data.CorreoElectronico %> </td>
+                        <td class="w-25">
+                            <div class="content__btn d-flex justify-content-evenly align-items-center">
+                                <a href="/users/edit/<%= data.id %>  " class="btn btn-outline-dark btn-sm"><i class="fas fa-user me-1"></i>Editar</a>
+                                <form method="POST" action="/users/delete/<%= data.id %>?_method=DELETE">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash me-1"></i>Borrar</a>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+          </table>
+    </main>
+    <%- include ('partials/footer') %>
+    <script src="https://kit.fontawesome.com/849e8c00db.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
